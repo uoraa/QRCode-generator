@@ -5,18 +5,26 @@
     <script src="js/vue.min.js"></script>
     <script src="js/qrious.min.js"></script>
     <link rel="stylesheet" href="css/style.css" />
-    <title>Gerador de QRCode</title>
+    <title></title>
   </head>
 
   <body>
     <div id="app">
       <h1>{{title}}</h1>
       <div>
-        <input
+        Details: <input
           type="text"
           size="25"
-          placeholder="Digite para gerar..."
+          placeholder=""
           v-model="text"
+        />
+      </div>
+      <div>
+        Size: <input
+          type="text"
+          size="25"
+          placeholder=""
+          v-model="size"
         />
       </div>
 
@@ -25,20 +33,24 @@
       </div>
 
       <div id="footer">
-        <h3>Feito com ❤ e ☕ By <strong>Juan</strong> Pablo</h3>
+        <h3></h3>
       </div>
     </div>
     <script>
       new Vue({
         el: "#app",
         data: {
-          title: "Gerador QRCode",
+          title: "",
           text: "",
-          qrcode: new QRious({ size: 300 }),
+          size: "",
+          level: "H",
+          qrcode: new QRious({ size: 1000 }),
         },
         computed: {
           newQRCode() {
             this.qrcode.value = this.text;
+            this.qrcode.size = this.size;
+            this.qrcode.level = this.level;
             return this.qrcode.toDataURL();
           },
         },
